@@ -6,10 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brutal Force Defeated</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>   
+    <style>
+        *{margin: 0; padding: 0;}
+        body{
+            background-color: #333;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #fff;
+        }
+
+        .container{
+            width: 380px;
+            height: auto;
+            padding: 25px;
+            margin:50px auto;
+            border: solid #222 1px;
+            border-radius: 12px;
+            box-shadow: #111 0px 3px 7px;            
+        }
+
+        .container h3{
+            padding: 15px;
+        }
+
+        #start{
+            width: 180px;
+            height: 45px;
+            border:solid 1px darkmagenta;
+            border-radius: 6px;
+            background-color: blueviolet;
+            color: #222;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            box-shadow: #111 0px 3px 7px;
+        }
+
+        .container input{
+            height: 30px;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+    </style>
 </head>
 <body>  
+
+    <div class="container">
+        <h3>Quebrador de Senha</h3>
+        <button id="start">Iniciar Quebra</button>
+        <input type="text" id="result" readonly>
+    </div>
+
+    
+
     <script>   
-        j=0;
+       
+        
 
         function consultar(pass){   
             response = "";  
@@ -34,15 +84,29 @@
             }
             return (con + str);
         }
+        
+        $("#start").click(function(){
+            $("#result").val("Iniciando ....");
+            j=0;
+            response = "erro";
+           /* while(response == "erro"){                
+                response = consultar(mascara(j));
+                $("#result").val("Tentativa:"+response);
+                console.log(response);
+                j++;
+            }
+            */
 
-        response = "erro";
-        while(response == "erro"){
-            response = consultar(mascara(j));
-            console.log(response);
-            j++;
-        }
+            for(j=50000;j<=99999;j++){                
+                response = consultar(mascara(j));
+                $("#result").val("Tentativa:"+response);
+                console.log(response);
+                j++;
+            }
 
-        alert(response);
+            alert(response);
+        });
+        
            
     </script>
 </body>
